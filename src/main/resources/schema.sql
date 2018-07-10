@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS meals;
+CREATE TABLE meals(id serial PRIMARY KEY, name VARCHAR(100));

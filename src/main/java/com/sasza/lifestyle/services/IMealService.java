@@ -9,4 +9,6 @@ public interface IMealService {
 	public List<Meal> findAll();
 
 	public Meal findByName(String name);
+	
+	public Meal save(Meal meal);
 }

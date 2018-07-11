@@ -25,6 +25,12 @@ public class MealController {
 
 		return "show meals";
 	}
+	
+	@RequestMapping("/add/{name}")
+	public Meal addMeal(@PathVariable("name") String name) {
+		Meal meal = new Meal(name);
+		return mealService.save(meal);
+	}
 
 	@RequestMapping("/findbyname/{name}")
 	public Meal findById(@PathVariable("name") String name) {

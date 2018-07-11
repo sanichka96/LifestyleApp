@@ -29,5 +29,61 @@
 			<column name="name" value="Kanapka"/>			
 		</insert>
 	</changeSet>
+	
+	<changeSet id="4" author="sasza">
+		<createTable tableName="training">
+			<column name="id" type="BIGINT">
+	        	<constraints nullable="false"/>
+	        </column>
+			<column name="name" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>			
+		</createTable>
+		<addAutoIncrement tableName="training" columnName="id" columnDataType="BIGINT"/>
+		<addUniqueConstraint columnNames="name" constraintName="unique_training_name" tableName="training" />
+		<addUniqueConstraint columnNames="name" constraintName="unique_meal_name" tableName="meal" />
+		
+		<createTable tableName="c_user">
+			<column name="id" type="BIGINT">
+	        	<constraints nullable="false"/>
+	        </column>
+			<column name="name" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>	
+			<column name="email" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>	
+			<column name="basic_weight" type="FLOAT8">
+				<constraints nullable="false"/>
+			</column>	
+			<column name="email_sent" type="BOOLEAN"/>					
+		</createTable>
+		<addAutoIncrement tableName="c_user" columnName="id" columnDataType="BIGINT"/>
+		<addUniqueConstraint columnNames="email" constraintName="unique_user_email" tableName="c_user" />
+	</changeSet>
+	
+	<changeSet id="5" author="sasza">
+		<insert tableName="training">
+			<column name="name" value="Bicepsy"/>			
+		</insert>
+		<insert tableName="training">
+			<column name="name" value="Tricepsy"/>			
+		</insert>
+		<insert tableName="training">
+			<column name="name" value="Hip-hop"/>			
+		</insert>		
+		<insert tableName="c_user">
+			<column name="name" value="Sasza"/>
+			<column name="email" value="sasza9696@gmail.com"/>
+			<column name="basic_weight" value="64.8"/>
+			<column name="email_sent" value="true"/>			
+		</insert>
+		<insert tableName="c_user">
+			<column name="name" value="Tomek"/>	
+			<column name="email" value="tomek.diakow@gmail.com"/>
+			<column name="basic_weight" value="86"/>
+			<column name="email_sent" value="true"/>
+		</insert>	
+	</changeSet>
     
 </databaseChangeLog>

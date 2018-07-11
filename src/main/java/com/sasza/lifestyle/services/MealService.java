@@ -24,4 +24,9 @@ public class MealService implements IMealService {
 		return mealRepository.findByName(name);
 	}
 
+	@Override
+	public Meal save(Meal meal) {
+		return mealRepository.save(meal);
+	}
+
 }

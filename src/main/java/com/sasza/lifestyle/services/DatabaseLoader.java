@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.sasza.lifestyle.repositories.MealRepository;
 import com.sasza.lifestyle.repositories.UserRepository;
 
 @Component
@@ -12,7 +11,7 @@ public class DatabaseLoader implements CommandLineRunner {
 	
 	private final UserRepository userRepository;
 	@Autowired
-	private MealRepository mealRepository;
+	private MealService mealService;
 	
 	@Autowired
 	public DatabaseLoader(UserRepository repository) {
@@ -30,6 +29,8 @@ public class DatabaseLoader implements CommandLineRunner {
 		 * List<Meal> meals = Arrays.asList(new Meal[] { new Meal("jablko"), new
 		 * Meal("precel"), new Meal("salatka") }); mealRepository.saveAll(meals);
 		 */
+		
+		//mealService.save(new Meal("Owoce"));
 	}
 
 }

@@ -3,35 +3,37 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "C_USER",
+uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name="name")
+	@Column(name="name", length = 50, nullable = false)
 	private String name;
 	
-	@Column(name="email")
+	@Column(name="email", length = 50, nullable = false)
 	private String email;
 	
-	@Column(name="basic_weight")
+	@Column(name="basic_weight", nullable = false)
 	private Double basicWeight;
 	
 	@Column(name="email_sent")
 	private Boolean emailSent;
 	
-	@ManyToMany(targetEntity=DailyActivity.class)
-	@JoinTable(name="DAILY_ACTIVITIES", 
-	joinColumns=@JoinColumn(name="user_id", referencedColumnName="id"))
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")	
 	private Set<DailyActivity> dailyActivities;
 		
 	public User() {}

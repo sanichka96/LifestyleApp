@@ -27,7 +27,7 @@ public class JDBCConnector {
 			System.out.println("Creating database...");
 			stmt = conn.createStatement();
 
-			String sql = "CREATE DATABASE LIFESTYLE";
+			String sql = "CREATE SCHEMA LIFESTYLE; CREATE DATABASE LIFESTYLE";
 			stmt.executeUpdate(sql);
 			System.out.println("Database created successfully...");
 		} catch (SQLException se) {			

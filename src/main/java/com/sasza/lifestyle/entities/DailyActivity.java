@@ -3,16 +3,23 @@ package com.sasza.lifestyle.entities;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "DAILY_ACTIVITY")
 public class DailyActivity {
 	
 	@Id
@@ -20,20 +27,27 @@ public class DailyActivity {
 	@Column(name="id")
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", nullable = false)
 	private User user;
 	
-	@ManyToMany(targetEntity=Training.class)	
+	@ManyToMany(cascade = CascadeType.ALL)	
+	@JoinTable(name = "DAILY_ACTIVITY_TRAINING", 
+	joinColumns = @JoinColumn(name = "daily_activity_id", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "training_id", referencedColumnName = "id"))
 	private Set<Training> trainings;
 	
-	@ManyToMany(targetEntity=Meal.class)
+	@ManyToMany
+	@JoinTable(name = "DAILY_ACTIVITY_MEAL", 
+	joinColumns = @JoinColumn(name = "daily_activity_id", referencedColumnName = "id"), 
+	inverseJoinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"))
 	private Set<Meal> meals;
 	
-	@Column(name="weight")
+	@Column(name="weight", nullable = false)
 	private Double weight;
 	
-	@Column(name="date")
+	@Temporal(TemporalType.DATE)
+	@Column(name="date", nullable = false)
 	private Date date;
 	
 	public DailyActivity() {}

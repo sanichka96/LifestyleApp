@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    
+
+    <changeSet author="sasza" id="1">
+		<createTable tableName="meal">
+			<column name="id" type="BIGINT">
+	        	<constraints nullable="false"/>
+	        </column>
+			<column name="name" type="VARCHAR(50)">
+				<constraints nullable="false"/>
+			</column>			
+		</createTable>
+		<addAutoIncrement tableName="meal" columnName="id" columnDataType="BIGINT"/>
+	</changeSet>
+
+    <changeSet author="sasza" id="2">
+        <addPrimaryKey columnNames="id" constraintName="meal_pkey" tableName="meal"/>    
+    </changeSet>
+    
+    <changeSet id="3" author="sasza">
+		<insert tableName="meal">
+			<column name="name" value="Jabłko"/>			
+		</insert>
+		<insert tableName="meal">
+			<column name="name" value="Precel"/>			
+		</insert>
+		<insert tableName="meal">
+			<column name="name" value="Kanapka"/>			
+		</insert>
+	</changeSet>
+    
+</databaseChangeLog>

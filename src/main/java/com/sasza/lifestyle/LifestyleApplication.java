@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LifestyleApplication {
 
 	public static void main(String[] args) {
-		JDBCConnector.createDatabase();
+		//JDBCConnector.createDatabase();
+		//SchemaGenerator.createExportFile();
 		SpringApplication.run(LifestyleApplication.class, args);
 	}
 }

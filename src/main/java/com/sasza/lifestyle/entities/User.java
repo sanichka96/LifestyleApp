@@ -1,13 +1,9 @@
 package com.sasza.lifestyle.entities;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -18,7 +14,7 @@ public class User {
 	
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="name", length = 50, nullable = false)
@@ -32,10 +28,7 @@ public class User {
 	
 	@Column(name="email_sent")
 	private Boolean emailSent;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")	
-	private Set<DailyActivity> dailyActivities;
-		
+			
 	public User() {}
 	
 	public User(String name, String email, Double basicWeight, Boolean emailSent) {		
@@ -43,6 +36,12 @@ public class User {
 		this.email = email;
 		this.basicWeight = basicWeight;
 		this.emailSent = emailSent;
+	}
+	
+	public User(String name, String email, Double basicWeight) {		
+		this.name = name;
+		this.email = email;
+		this.basicWeight = basicWeight;		
 	}
 
 	public Long getId() {
@@ -85,11 +84,4 @@ public class User {
 		this.emailSent = emailSent;
 	}
 	
-	public Set<DailyActivity> getDailyActivities() {
-		return dailyActivities;
-	}
-
-	public void setDailyActivities(Set<DailyActivity> dailyActivities) {
-		this.dailyActivities = dailyActivities;
-	}
 }

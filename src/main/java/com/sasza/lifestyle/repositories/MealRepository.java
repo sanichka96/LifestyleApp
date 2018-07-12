@@ -8,5 +8,5 @@ import com.sasza.lifestyle.entities.Meal;
 @Repository
 public interface MealRepository extends CrudRepository<Meal, Long> {
 	
-	Meal findByName(String name);
+	Meal findByNameIgnoreCase(String name);
 }

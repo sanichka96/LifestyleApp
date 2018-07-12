@@ -17,7 +17,7 @@ public class MealController {
 
 	@Autowired
 	MealService mealService;
-	
+
 	@RequestMapping("/findall")
 	public String findAll(Model model) {
 		List<Meal> meals = mealService.findAll();
@@ -25,7 +25,7 @@ public class MealController {
 
 		return "show meals";
 	}
-	
+
 	@RequestMapping("/add/{name}")
 	public Meal addMeal(@PathVariable("name") String name) {
 		Meal meal = new Meal(name);
@@ -35,5 +35,10 @@ public class MealController {
 	@RequestMapping("/findbyname/{name}")
 	public Meal findById(@PathVariable("name") String name) {
 		return mealService.findByName(name);
+	}
+
+	@RequestMapping("/delete/{id}")
+	public void deleteById(@PathVariable("id") Long id) {
+		mealService.deleteById(id);
 	}
 }

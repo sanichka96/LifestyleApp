@@ -37,7 +37,7 @@ public class DailyActivity {
 	inverseJoinColumns = @JoinColumn(name = "training_id", referencedColumnName = "id"))
 	private Set<Training> trainings;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "DAILY_ACTIVITY_MEAL", 
 	joinColumns = @JoinColumn(name = "daily_activity_id", referencedColumnName = "id"), 
 	inverseJoinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"))

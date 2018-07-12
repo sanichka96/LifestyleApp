@@ -1,13 +1,10 @@
 package com.sasza.lifestyle.entities;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -23,9 +20,6 @@ public class Meal {
 	
 	@Column(name="name", length = 50, nullable = false)
 	private String name;	
-	
-	@ManyToMany(mappedBy = "meals")
-	private Set<DailyActivity> dailyActivities;
 	
 	public Meal() {}
 	
@@ -47,13 +41,5 @@ public class Meal {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public Set<DailyActivity> getDailyActivities() {
-		return dailyActivities;
-	}
-
-	public void setDailyActivities(Set<DailyActivity> dailyActivities) {
-		this.dailyActivities = dailyActivities;
 	}
 }

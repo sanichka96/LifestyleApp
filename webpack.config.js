@@ -12,17 +12,21 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   module: {
-    rules: [
-        {
-          test: /\.jsx$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015', "react"]
-            }
-          }
+    rules: [{
+      test: /\.jsx$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['es2015', "react"]
         }
-    ]
+      }
+    }]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, './src/main/resources/static/built'),
+    compress: true,
+    port: 9000,
+    stats: "errors-only"
   }
 }

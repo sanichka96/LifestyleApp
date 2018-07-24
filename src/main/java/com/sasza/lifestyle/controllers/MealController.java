@@ -12,7 +12,7 @@ import com.sasza.lifestyle.entities.Meal;
 import com.sasza.lifestyle.services.MealService;
 
 @RestController
-@RequestMapping("/api/meals")
+@RequestMapping("/meals")
 public class MealController {
 
 	@Autowired

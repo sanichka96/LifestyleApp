@@ -9,7 +9,7 @@ import com.sasza.lifestyle.entities.Training;
 import com.sasza.lifestyle.services.TrainingService;
 
 @RestController
-@RequestMapping("/api/trainings")
+@RequestMapping("/trainings")
 public class TrainingController {
 
 	@Autowired

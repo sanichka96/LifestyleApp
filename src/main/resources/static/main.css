@@ -1,14 +1,159 @@
 body {
     margin: 0;
     width: 100%;
+    font-family: 'Comfortaa';
 } 
 
-table {
-    border-collapse: collapse;
+/* cyrillic */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4SYFqPfE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4Q4FqPfE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4TYFq.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-td, th {
-    border: 1px solid #999;
-    padding: 0.5rem;
-    text-align: left;
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-bottom: 1px solid #008040;
+    background-color: #00cc66;
+    position: sticky;
+    top: 0;
 }
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px; 
+}
+
+
+.navbar li a:focus {  
+    font-weight: bold;
+    color: #008040;
+    background-color: #e6ffe6;
+}
+
+.navbar li a:hover {
+    color: #008040;
+    background-color: #e6ffe6;
+}
+
+.navbar li a:active {  
+    font-weight: bold;
+    color: #008040;
+    background-color: #e6ffe6;
+}
+
+.list {
+    margin: 20px 50px;
+}
+
+.list h2 {
+    text-align: center;
+}
+
+.addNew {
+    width: 115px;
+    height: 40px;
+    background: #ccffdd;
+    font-size: 16px;
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0 0 15px rgba(0, 204, 68, 0.6);
+    outline: none;
+    float: right;
+    margin-right: 10%;
+}
+
+.modalHeading {
+    text-align: center;
+}
+
+.modalText {
+    text-align: center;
+}
+
+.modalInput {
+    outline: none;
+    width: 200px;
+    height: auto;
+    border: #008040 solid 1px;
+    font-size: 14px;
+    margin: 0 40px;
+    padding: 2px 5px;
+}
+
+.modalButtons {
+    margin: 20px;
+}
+
+.modalButtons button {
+    width: 100px;
+    height: auto;
+    font-size: 14px;
+    padding: 5px;
+    outline: none;
+}
+
+.modalButtons button:first-child {
+    float: left;
+}
+
+.modalButtons button:last-child {
+    float: right;
+}
+
+.list ul {
+    list-style-type: none;
+    margin-top: 60px;
+}
+
+.listItem {
+    text-decoration: none;
+    margin: 25px 0;
+}
+
+.listItem hr {
+    margin-right: 50%;
+    border: 1px solid #70dbdb;
+}
+
+.listItem button {
+    background: #99e6e6;
+    margin-right: 50%;
+    float: right;
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0 0 15px rgba(51, 204, 204, 0.6);
+    outline: none;
+    height: 20px;
+}
+
+

@@ -9,7 +9,7 @@ import com.sasza.lifestyle.entities.User;
 import com.sasza.lifestyle.services.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired

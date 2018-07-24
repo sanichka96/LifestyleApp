@@ -20,7 +20,7 @@ import com.sasza.lifestyle.services.TrainingService;
 import com.sasza.lifestyle.services.UserService;
 
 @RestController
-@RequestMapping("/api/dailyActivities")
+@RequestMapping("/dailyActivities")
 public class DailyActivityController {
 
 	@Autowired

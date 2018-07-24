@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UserList from './UserList';
+import Header from './Header';
+//import UserList from './UserList';
 
 class App extends React.Component {
+
     render() {
-        return (<UserList />)
+        return (
+            <div>
+                <Header/>
+                
+            </div>            
+        )
     }
 }
 
 ReactDOM.render(
-	<App />,document.getElementById('react')
+            <App />,
+  
+	document.getElementById('react')
 )

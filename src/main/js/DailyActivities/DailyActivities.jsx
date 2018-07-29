@@ -34,7 +34,7 @@ export default class DailyActivities extends React.Component {
                 trainings: [],
                 meals: [],
                 weight: '',
-                date: ''
+                date: today
             },
             canAddActivity: false,
             currentMeal: '',
@@ -60,39 +60,45 @@ export default class DailyActivities extends React.Component {
     }
 
     addNewActivity() {
-        fetch(location.href + '/add/'
-            + this.state.inputValue.user
-            + this.state.inputValue.trainings
-            + this.state.inputValue.meals
-            + this.state.inputValue.weight
-            + this.state.inputValue.date, {
+        console.log(this.state.inputValue)
+        fetch(location.href + '/add/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstParam: this.state.inputValue.user,
-                    fecondirstParam: this.state.inputVatrainingsuser,
-                    thirdParam: this.state.inputValue.meals.map(meal => meal.id),
-                    fourthParam: this.state.inputValue.weight,
-                    fifthParam: this.state.inputValue.date
+                    user: this.state.inputValue.user.id,
+                    trainings: this.state.inputValue.trainings.map(train => train.id),
+                    meals: this.state.inputValue.meals.map(meal => meal.id),
+                    weight: this.state.inputValue.weight,
+                    date: this.state.inputValue.date
                 }),
 
             })
-            .then(response => response.json())
-            .then((data) => {
-                this.getMeals();
-                this.setState({ 'modalIsOpen': !this.state.modalIsOpen })
-            })
+            .then(response => response.json())       
     }
 
-    setCurrentUser(value) {        
+    setCurrentUser(value) {
         let newState = Object.assign({}, this.state.inputValue);
-        let id = this.state.users.find(obj => obj.email === value).id;       
-        newState.user = { 'email': value, 'id': id };        
+        let id = this.state.users.find(obj => obj.email === value).id;
+        newState.user = { 'email': value, 'id': id };
+        console.log(this.state.inputValue.user);
         this.setState({ 'inputValue': newState });
         console.log(this.state.inputValue.user);
+    }
+
+    setWeight(value) {
+        let newState = Object.assign({}, this.state.inputValue);
+        newState.weight = value;
+        this.setState({ inputValue: newState });
+    }
+
+    setDate(value) {
+        let newState = Object.assign({}, this.state.inputValue);
+        newState.date = value;
+        this.setState({ inputValue: newState });
+        console.log(this.state.inputValue.date)
     }
 
     enableAdd(event) {
@@ -106,13 +112,14 @@ export default class DailyActivities extends React.Component {
         let id = this.state.meals.find(obj => obj.name === value).id;
         newState.meals.push({ 'name': value, 'id': id });
         this.setState({ 'inputValue': newState });
-
+        this.setState({ 'currentMeal': '' })
     }
 
     deleteMealFromList(value) {
         let newState = Object.assign({}, this.state.inputValue);
         newState.meals = newState.meals.filter(obj => obj.name !== value.name);
         this.setState({ 'inputValue': newState });
+        console.log(this.state.meals);
         this.setState({ 'isMealChosen': !(newState.meals.length === 0) });
     }
 
@@ -122,7 +129,7 @@ export default class DailyActivities extends React.Component {
         let id = this.state.trainings.find(obj => obj.name === value).id;
         newState.trainings.push({ 'name': value, 'id': id });
         this.setState({ 'inputValue': newState });
-
+        this.setState({ 'currentTraining': '' })
     }
 
     deleteTrainingFromList(value) {
@@ -154,21 +161,22 @@ export default class DailyActivities extends React.Component {
             <div className="list">
                 <h2>Aktywność dzienna</h2>
                 <div>
-                    <h4>Wybierz użytkownika</h4>
-                    <select onChange={e => this.setCurrentUser(e.target.value)}>
-                        <option disabled selected value>Wybierz użytkownika</option>
-                        {this.state.users.map(user => <option key={user.id} value={user.email}>{user.email}</option>)}
-                    </select>
-                    <h4>Dodaj nową aktywność</h4>
                     <form>
+                        <h4>Wybierz użytkownika</h4>
+                        <select onChange={e => this.setCurrentUser(e.target.value)}>
+                            <option disabled selected value>Wybierz użytkownika</option>
+                            {this.state.users.map(user => <option key={user.id} value={user.email}>{user.email}</option>)}
+                        </select>
+                        <h4>Dodaj nową aktywność</h4>
+
                         <div>
                             <label>Data: </label>
                             <input type="date"
-                                min="2018-01-01" max={today} defaultValue={today} />
+                                min="2018-01-01" max={today} defaultValue={today} onChange={e => this.setDate(e.target.value)} />
                         </div>
                         <div>
                             <label>Waga w kg: </label>
-                            <input type="number" min="1" max="200" step="0.1" />
+                            <input type="number" min="1" max="200" step="0.1" onChange={e => this.setWeight(e.target.value)} />
                         </div>
                         <div>
                             <label>Posiłki: </label>
@@ -236,7 +244,7 @@ export default class DailyActivities extends React.Component {
                                 </ul>
                             </div>
                         </div>
-                        <button type="submit" className="addNew" onClick={this.addNewActivity}>Zapisz</button>
+                        <button type="button" className="addNew" onClick={this.addNewActivity}>Zapisz</button>
                     </form>
                 </div>
 

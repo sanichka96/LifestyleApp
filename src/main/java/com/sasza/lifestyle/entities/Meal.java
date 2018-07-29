@@ -26,6 +26,10 @@ public class Meal {
  	public Meal(String name) {		
 		this.name = name;
 	}
+ 	
+ 	public Meal(Long id) {		
+		this.id = id;
+	}
 	
 	public Long getId() {
 		return id;

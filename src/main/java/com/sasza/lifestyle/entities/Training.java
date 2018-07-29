@@ -27,6 +27,10 @@ public class Training {
 		this.name = name;
 	}
 	
+	public Training(Long id) {		
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -1,4 +1,5 @@
 package com.sasza.lifestyle.entities;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,40 +9,44 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "C_USER",
-uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@Table(name = "C_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
 public class User {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="name", length = 50, nullable = false)
+
+	@Column(name = "name", length = 50, nullable = false)
 	private String name;
-	
-	@Column(name="email", length = 50, nullable = false)
+
+	@Column(name = "email", length = 50, nullable = false)
 	private String email;
-	
-	@Column(name="basic_weight", nullable = false)
+
+	@Column(name = "basic_weight", nullable = false)
 	private Double basicWeight;
-	
-	@Column(name="email_sent")
+
+	@Column(name = "email_sent")
 	private Boolean emailSent;
-			
-	public User() {}
-	
-	public User(String name, String email, Double basicWeight, Boolean emailSent) {		
+
+	public User() {
+	}
+
+	public User(String name, String email, Double basicWeight, Boolean emailSent) {
 		this.name = name;
 		this.email = email;
 		this.basicWeight = basicWeight;
 		this.emailSent = emailSent;
 	}
-	
-	public User(String name, String email, Double basicWeight) {		
+
+	public User(String name, String email, Double basicWeight) {
 		this.name = name;
 		this.email = email;
-		this.basicWeight = basicWeight;		
+		this.basicWeight = basicWeight;
+	}
+
+	public User(Long id) {
+		this.id = id;
 	}
 
 	public Long getId() {
@@ -83,5 +88,5 @@ public class User {
 	public void setEmailSent(Boolean emailSent) {
 		this.emailSent = emailSent;
 	}
-	
+
 }

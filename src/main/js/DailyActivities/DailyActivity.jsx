@@ -18,7 +18,7 @@ export default class DailyActivity extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {            
+        this.state = {
             'modalIsOpen': false,
             'isDeleted': false
         }
@@ -45,10 +45,41 @@ export default class DailyActivity extends React.Component {
 
     render() {
         return (
-            <li hidden={this.state.isDeleted} className="listItem">
-                {this.props.name}
+            <li hidden={this.state.isDeleted} className="activity listItem">
+                <button onClick={this.changeModal}>Edytuj</button>
                 <button onClick={this.changeModal}>Usuń</button>
                 <hr />
+                <div>
+                    <label>Użytkownik: </label>
+                    <input disabled value={this.props.user.email} />
+                </div>
+                <div>
+                    <label>Data: </label>
+                    <input type="date" disabled value={this.props.date} />
+                </div>
+                <div>
+                    <label>Waga: </label>
+                    <input type="number" disabled value={this.props.weight} />
+                </div>
+                <div>
+                    <label>Posiłki: </label>
+                    <div className="hiddenList" disabled>
+                        <ul>
+                            {this.props.meals.map(meal =>
+                                <li key={meal.id}>{meal.name}</li>)}
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <label>Treningi: </label>
+                    <div className="hiddenList">
+                        <ul>
+                            {this.props.trainings.map(train =>
+                                <li key={train.id}>{train.name}</li>)}
+                        </ul>
+                    </div>
+                </div>
+
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.changeModal}

@@ -1,13 +1,23 @@
+
+$borderInput: #008040 solid 1px;
+$font: 'Comfortaa';
+$navbarColor: #00cc66;
+$navbarBorder: 1px solid #008040;
+
+.modalInput {
+   border: $borderInput;
+}
+
 body {
     margin: 0;
     width: 100%;
-    font-family: 'Comfortaa';
+    font-family: $font;
 }
 
 /* cyrillic */
 
 @font-face {
-    font-family: 'Comfortaa';
+    font-family: $font;
     font-style: normal;
     font-weight: 400;
     src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4SYFqPfE.woff2) format('woff2');
@@ -17,7 +27,7 @@ body {
 /* latin-ext */
 
 @font-face {
-    font-family: 'Comfortaa';
+    font-family: $font;
     font-style: normal;
     font-weight: 400;
     src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4Q4FqPfE.woff2) format('woff2');
@@ -27,7 +37,7 @@ body {
 /* latin */
 
 @font-face {
-    font-family: 'Comfortaa';
+    font-family: $font;
     font-style: normal;
     font-weight: 400;
     src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url(https://fonts.gstatic.com/s/comfortaa/v12/1Ptsg8LJRfWJmhDAuUs4TYFq.woff2) format('woff2');
@@ -39,8 +49,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border-bottom: 1px solid #008040;
-    background-color: #00cc66;
+    border-bottom: $navbarBorder;
+    background-color: $navbarColor;
     position: sticky;
     top: 0;
 }

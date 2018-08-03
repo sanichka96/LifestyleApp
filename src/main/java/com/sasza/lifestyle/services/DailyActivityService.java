@@ -26,5 +26,9 @@ public class DailyActivityService {
 	public DailyActivity save(DailyActivity dailyActivity) {
 		return dailyActivityRepository.save(dailyActivity);
 	}
+	
+	public List<DailyActivity> findAll() {
+		return (List<DailyActivity>) dailyActivityRepository.findAll();
+	}
 
 }

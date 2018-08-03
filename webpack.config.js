@@ -13,20 +13,25 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.jsx$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015', "react"]
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', "react"]
+          }
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }]
       }
-    }]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, './src/main/resources/static/built'),
-    compress: true,
-    port: 9000,
-    stats: "errors-only"
+    ]
   }
 }

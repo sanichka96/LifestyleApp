@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server"
+    "build": "webpack-dev-server --entry ./src/main/js/app.jsx --output-filename ./src/main/resources/static/built/out.js"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,11 @@
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^1.0.0",
     "react": "^15.4.0",
     "react-confirm-alert": "^2.0.5",
     "react-dom": "^15.4.0",
+    "style-loader": "^0.21.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.4"
   }

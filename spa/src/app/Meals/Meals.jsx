@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Meal from './Meal';
+import ApiDataService from '../services/ApiDataService';
 
 const customStyles = {
     content: {
@@ -27,21 +28,26 @@ export default class Meals extends React.Component {
             inputValue: '',
             canAddMeal: false
         };
-        this.getMeals();
+        //this.getMeals();
         this.addNewMeal = this.addNewMeal.bind(this);
         this.changeModal = this.changeModal.bind(this);
     }
 
-    changeModal() {
-        this.setState({ 'modalIsOpen': !this.state.modalIsOpen })
+    componentWillMount() {
+        ApiDataService.getMeals()
+            .then(response => this.setState({meals: response}));
     }
 
-    getMeals() {
+    changeModal() {
+        this.setState({'modalIsOpen': !this.state.modalIsOpen})
+    }
+
+    /*getMeals() {
         fetch(URL + '/meals/all')
             .then(result => result.json())
             .then(data => this.setState({ meals: data }))
             .catch(error => console.log(error));
-    }
+    }*/
 
     addNewMeal() {
         fetch(URL + '/meals' + '/add/' + this.state.inputValue, {
@@ -57,14 +63,15 @@ export default class Meals extends React.Component {
         })
             .then(response => response.json())
             .then((data) => {
-                this.getMeals();
-                this.setState({ 'modalIsOpen': !this.state.modalIsOpen })
+                ApiDataService.getMeals()
+                    .then(response => this.setState({meals: response}));
+                this.setState({'modalIsOpen': !this.state.modalIsOpen})
             })
     }
 
     enableAdd(event) {
-        this.setState({ 'canAddMeal': true })
-        this.setState({ 'inputValue': event.target.value });
+        this.setState({'canAddMeal': true})
+        this.setState({'inputValue': event.target.value});
     }
 
     render() {
@@ -74,7 +81,7 @@ export default class Meals extends React.Component {
                 <button className="addNew" onClick={this.changeModal}>Dodaj nowy</button>
                 <ul>
                     {this.state.meals.map(meal => {
-                        return <Meal id={meal.id} name={meal.name} key={meal.id} />
+                        return <Meal id={meal.id} name={meal.name} key={meal.id}/>
                     })}
                 </ul>
                 <Modal
@@ -85,7 +92,7 @@ export default class Meals extends React.Component {
                     <h3 className="modalHeading">Dodaj nowy posiłek</h3>
                     <div>
                         <p className="modalText">Podaj nazwę</p>
-                        <input type="text" className="modalInput" onChange={this.enableAdd.bind(this)} />
+                        <input type="text" className="modalInput" onChange={this.enableAdd.bind(this)}/>
                         <section className="modalButtons">
                             <button onClick={this.changeModal}>Zamknij</button>
                             <button disabled={!this.state.canAddMeal} onClick={this.addNewMeal}>Zapisz</button>

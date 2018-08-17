@@ -48,17 +48,17 @@ body {
       padding: 14px 16px;
       text-decoration: none;
       font-size: 20px; }
-    .navbar li a:focus {
-      font-weight: bold;
-      color: #008040;
-      background-color: #e6ffe6; }
-    .navbar li a:hover {
-      color: #008040;
-      background-color: #e6ffe6; }
-    .navbar li a:active {
-      font-weight: bold;
-      color: #008040;
-      background-color: #e6ffe6; }
+      .navbar li a:focus {
+        font-weight: bold;
+        color: #008040;
+        background-color: #e6ffe6; }
+      .navbar li a:hover {
+        color: #008040;
+        background-color: #e6ffe6; }
+      .navbar li a:active {
+        font-weight: bold;
+        color: #008040;
+        background-color: #e6ffe6; }
 
 .list {
   margin: 20px 50px; }
@@ -103,10 +103,10 @@ body {
     font-size: 14px;
     padding: 5px;
     outline: none; }
-  .modalButtons button:first-child {
-    float: left; }
-  .modalButtons button:last-child {
-    float: right; }
+    .modalButtons button:first-child {
+      float: left; }
+    .modalButtons button:last-child {
+      float: right; }
 
 .hiddenList {
   width: 300px;
@@ -150,6 +150,10 @@ body {
     font-size: 14px;
     background: #adebeb; }
 
+input[role="combobox"]:invalid {
+  border-color: red; }
+
+select:valid,
 select,
 input,
 option {
@@ -159,10 +163,12 @@ option {
   border: 1px solid #70dbdb;
   font-family: "Comfortaa"; }
 
-select option {
+option {
   background: #99e6e6; }
+  option:disabled {
+    display: none; }
 
-input:required:invalid, option:disabled {
+input:required:invalid, select {
   border-color: red; }
 
 label {

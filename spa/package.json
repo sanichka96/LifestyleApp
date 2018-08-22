@@ -24,7 +24,8 @@
     "moment": "^2.22.2",
     "react-autocomplete": "^1.8.1",
     "react-modal": "^3.5.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "react-router-private-route": "0.0.3"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

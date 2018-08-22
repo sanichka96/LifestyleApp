@@ -18,6 +18,20 @@ export default class ApiDataService extends React.Component {
             })
             .catch(error => console.warn(error));
     }
+
+    static getTrainings() {
+        return fetch(URL + '/trainings/all',
+            {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(responseData => responseData)
+            .catch(error => console.warn(error));
+    }
 };
 
 

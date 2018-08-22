@@ -33,7 +33,7 @@ public class UserController {
 	public User addUser(@PathVariable("name") String name, @PathVariable("email") String email,
 			@PathVariable("basicWeight") Double basicWeight) {
 
-		return userService.save(new User(name, email, basicWeight));
+		return userService.save(new User());
 	}
 
 	@RequestMapping("/findbyemail/{email}")

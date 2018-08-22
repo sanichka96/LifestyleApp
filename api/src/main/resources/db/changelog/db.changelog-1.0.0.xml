@@ -139,5 +139,23 @@
         <addForeignKeyConstraint baseColumnNames="training_id" baseTableName="daily_activity_training"
             constraintName="fk_training_id" referencedColumnNames="id" referencedTableName="training"/>
 	</changeSet>
+	
+	<changeSet id="7" author="sasza">
+		<addColumn tableName="c_user">
+        	<column name="role" type="VARCHAR(50)"/>
+    	</addColumn>
+    	<addColumn tableName="c_user">
+        	<column name="username" type="VARCHAR(50)"/>
+    	</addColumn>
+    	<addColumn tableName="c_user">
+        	<column name="password" type="VARCHAR(100)"/>
+    	</addColumn>
+    	<dropColumn columnName="name"            
+            tableName="c_user"/>
+	</changeSet>
+	
+	<changeSet id="8" author="sasza">
+		<addUniqueConstraint columnNames="username" constraintName="unique_user_username" tableName="c_user" />
+	</changeSet>
     
 </databaseChangeLog>

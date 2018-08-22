@@ -8,10 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "C_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "email" }) })
+@Table(name = "C_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "email", "username" }) })
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
@@ -20,8 +21,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name", length = 50, nullable = false)
-	private String name;
+	@Column(name = "username", length = 50, nullable = false)
+	@JsonIgnore
+	private String username;
+	
+	@Column(name = "password", length = 100, nullable = false)
+	@JsonIgnore
+	private String password;
+
+	@Column(name = "role", length = 50, nullable = false)
+	private String role;
 
 	@Column(name = "email", length = 50, nullable = false)
 	private String email;
@@ -35,17 +44,13 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String email, Double basicWeight, Boolean emailSent) {
-		this.name = name;
+	public User(String username, String password, String role, String email, Double basicWeight, Boolean emailSent) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
 		this.email = email;
 		this.basicWeight = basicWeight;
 		this.emailSent = emailSent;
-	}
-
-	public User(String name, String email, Double basicWeight) {
-		this.name = name;
-		this.email = email;
-		this.basicWeight = basicWeight;
 	}
 
 	public User(Long id) {
@@ -60,12 +65,28 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getEmail() {

@@ -42,13 +42,6 @@ export default class Meals extends React.Component {
         this.setState({'modalIsOpen': !this.state.modalIsOpen})
     }
 
-    /*getMeals() {
-        fetch(URL + '/meals/all')
-            .then(result => result.json())
-            .then(data => this.setState({ meals: data }))
-            .catch(error => console.log(error));
-    }*/
-
     addNewMeal() {
         fetch(URL + '/meals' + '/add/' + this.state.inputValue, {
             method: 'POST',
@@ -63,8 +56,9 @@ export default class Meals extends React.Component {
         })
             .then(response => response.json())
             .then((data) => {
-                ApiDataService.getMeals()
-                    .then(response => this.setState({meals: response}));
+                let newState = Object.assign([], this.state.meals);
+                newState.push(data);
+                this.setState({ 'meals': newState });
                 this.setState({'modalIsOpen': !this.state.modalIsOpen})
             })
     }

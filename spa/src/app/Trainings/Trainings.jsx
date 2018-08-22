@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Training from './Training';
+import ApiDataService from "../services/ApiDataService";
 
 const customStyles = {
     content: {
@@ -27,21 +28,25 @@ export default class Trainings extends React.Component {
             inputValue: '',
             canAddTraining: false
         };
-        this.getTrainings();
         this.addNewTraining = this.addNewTraining.bind(this);
         this.changeModal = this.changeModal.bind(this);
+    }
+
+    componentWillMount() {
+        ApiDataService.getTrainings()
+            .then(response => this.setState({trainings: response}));
     }
 
     changeModal() {
         this.setState({ 'modalIsOpen': !this.state.modalIsOpen })
     }
 
-    getTrainings() {
+    /*getTrainings() {
         fetch(URL + '/trainings/all')
             .then(result => result.json())
             .then(data => this.setState({ trainings: data }))
             .catch(error => console.log(error))
-    }
+    }*/
 
     addNewTraining() {
         fetch(URL + '/trainings' + '/add/' + this.state.inputValue, {
@@ -57,7 +62,9 @@ export default class Trainings extends React.Component {
         })
             .then(response => response.json())
             .then((data) => {
-                this.getTrainings();
+                let newState = Object.assign([], this.state.trainings);
+                newState.push(data);
+                this.setState({ 'trainings': newState });
                 this.setState({ 'modalIsOpen': !this.state.modalIsOpen })
             })
     }

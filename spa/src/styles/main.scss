@@ -3,6 +3,7 @@ $font: 'Comfortaa';
 $navbarColor: #00cc66;
 $navbarBorder: 1px solid #008040;
 $listBorder: 1px solid #70dbdb;
+$loginBorder: 2px solid #70dbdb;
 .modalInput {
   border: $borderInput;
 }
@@ -75,6 +76,10 @@ body {
       }
     }
   }
+}
+
+.logging {
+  float: right;
 }
 
 .list {
@@ -228,6 +233,7 @@ label {
 
 form div {
   margin-bottom: 10px;
+  vertical-align: middle;
 }
 
 button {
@@ -258,4 +264,28 @@ span {
 
 .column {
   flex: 1;
+}
+
+.loginContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border: $loginBorder;
+  border-radius: 8px;
+  padding: 15px;
+  div {
+    height: 40px;
+  }
+  p {
+    font-weight: bold;
+    text-align: center;
+  }
+  input {
+    float: right;
+  }
+  button {
+    margin-top: 10px;
+  }
 }

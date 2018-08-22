@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import ReadOnlyDailyActivity from './ReadOnlyDailyActivity';
 import EditableDailyActivity from './EditableDailyActivity';
+import ApiDataService from '../services/ApiDataService';
 
 const URL = 'http://localhost:8080/dailyActivities';
 
@@ -14,7 +15,8 @@ export default class DailyActivities extends React.Component {
             dailyActivities: [],
             modalIsOpen: false,
             canAddActivity: false,
-            isEditable: false
+            isEditable: false,
+            isLogged: false
         };
         this.getDailyActivities();
         this.addNewActivity = this.addNewActivity.bind(this);

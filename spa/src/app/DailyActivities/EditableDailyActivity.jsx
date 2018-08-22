@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactAutocomplete from 'react-autocomplete';
 import moment from 'moment';
+import ApiDataService from "../services/ApiDataService";
 
 const today = moment().format('YYYY-MM-DD');
 const URL = 'http://localhost:8080';
@@ -104,15 +105,11 @@ export default class EditableDailyActivity extends React.Component {
             .then(data => this.setState({ users: data }))
             .catch(error => console.log(error));
 
-        fetch(URL + "/meals/all")
-            .then(result => result.json())
-            .then(data => this.setState({ meals: data }))
-            .catch(error => console.log(error));
+        ApiDataService.getMeals()
+            .then(response => this.setState({meals: response}));
 
-        fetch(URL + "/trainings/all")
-            .then(result => result.json())
-            .then(data => this.setState({ trainings: data }))
-            .catch(error => console.log(error));
+        ApiDataService.getTrainings()
+            .then(response => this.setState({trainings: response}));
 
     }
 
@@ -134,7 +131,7 @@ export default class EditableDailyActivity extends React.Component {
             <form>
                 <div>
                     <label>Użytkownik * </label>
-                    <select onChange={e => this.setCurrentUser(e.target.value)} required={true}>
+                    <select onChange={e => this.setCurrentUser(e.target.value)} required>
                         <option disabled selected></option>
                         {this.state.users.map(user => <option key={user.id} value={user.email}>{user.email}</option>)}
                     </select>
@@ -142,11 +139,11 @@ export default class EditableDailyActivity extends React.Component {
                 <div>
                     <label>Data * </label>
                     <input type="date"
-                        min="2018-01-01" max={today} defaultValue={today} onChange={e => this.setDate(e.target.value)} required={true} />
+                        min="2018-01-01" max={today} defaultValue={today} onChange={e => this.setDate(e.target.value)} required />
                 </div>
                 <div>
                     <label>Waga w kg * </label>
-                    <input type="number" min="1" max="200" step="0.1" onChange={e => this.setWeight(e.target.value)} required={true}/>
+                    <input type="number" min="1" max="200" step="0.1" onChange={e => this.setWeight(e.target.value)} required />
                 </div>
                 <div>
                     <label>Posiłki * </label>

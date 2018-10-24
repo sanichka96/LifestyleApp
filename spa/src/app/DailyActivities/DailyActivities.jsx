@@ -40,7 +40,7 @@ export default class DailyActivities extends React.Component {
         let elements = Object.values(inputValue);
         let canSubmit = true;
         for (let i = 0; i < elements.length; i++) {
-            if (elements[i].length == 0) {
+            if (elements[i].length === 0) {
                 canSubmit = false;
             }
         }
@@ -64,10 +64,7 @@ export default class DailyActivities extends React.Component {
                 }),
 
             })
-                .then(response => {
-                    console.log("response", response);
-                    response.json();
-                })
+                .then(response => response.json())
                 .then((data) => {
                     this.getDailyActivities();
                 })

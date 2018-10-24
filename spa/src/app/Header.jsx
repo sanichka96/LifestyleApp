@@ -11,8 +11,6 @@ import PrivateRoute from "react-router-private-route";
 
 export default class Header extends React.Component {
 
-
-
     render() {
         return (
             <Router>
@@ -26,10 +24,10 @@ export default class Header extends React.Component {
                                 <li><Link to='/trainings'>Treningi</Link></li>
                                 <li><Link to='/dailyActivities'>Aktywności</Link></li>
                                 <li><Link to='/reports'>Raporty</Link></li>
-                                <div className="logging">
+                                {/*<div className="logging">
                                     <label/>
                                     <button>Zaloguj</button>
-                                </div>
+                                </div>*/}
                             </ul>
                         </nav>
                     </header>

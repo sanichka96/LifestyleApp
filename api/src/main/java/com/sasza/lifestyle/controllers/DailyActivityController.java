@@ -41,8 +41,8 @@ public class DailyActivityController {
 	@Autowired
 	private TrainingService trainingService;
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PostMapping
+	//@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public DailyActivity addDailyActivity(@RequestBody DailyActivity activity) {
 
 		User user = userService.findById(activity.getUser().getId());
